@@ -1,11 +1,10 @@
 import "./App.scss";
 import { useEffect, useState } from "react";
-import Messages from "./Messages";
-import Input from "./Input";
+// import Messages from "./Messages";
+// import Input from "./Input";
 import Login from "./Login";
 import { CHANNEL_ID } from "./util/channel";
-
-// class App extends Component {
+import ChatHeader from "./ChatHeader";
 
 const App = () => {
     const initChatState = {
@@ -129,41 +128,34 @@ const App = () => {
             }
         };
 
-        if(drone && !chat.member.id) { //If drone exists but member.id doesn't, call droneEvents again
+        if (drone && !chat.member.id) {
+            //If drone exists but member.id doesn't, call droneEvents again
             droneEvents();
         }
-
     }, [chat, drone, isTyping, initMemberId, members]);
 
-
-    const onSendMessage = (message) => {
-        this.drone.publish({
-            room: "observable-room",
-            message,
-        });
-    };
+    // const onSendMessage = (message) => {
+    //     this.drone.publish({
+    //         room: "observable-room",
+    //         message,
+    //     });
+    // };
 
     return (
         <>
-            {!chat.member.username ? (
+            {!chat.member.username ? ( //If no username, load login
                 <div className="reg-container">
                     <Login chat={chat} setChat={(obj) => setChat(obj)} />
                 </div>
-            ) : (
-                <div className="App">
-                    <div className="App-header">
-                        <h1>My Chat App</h1>
-                    </div>
-                    <Messages
-                        messages={chat.messages}
-                        currentMember={chat.member}
-                    />
-                    <Input onSendMessage={onSendMessage} />
-                </div>
+            ) : ( //Else load everything chat related
+                <ChatHeader whoIsTyping={isTyping} members={members.online} />
             )}
         </>
     );
 };
+
+export default App;
+
 
 // render() {
 //     return (
@@ -180,5 +172,3 @@ const App = () => {
 //     );
 // };
 // }
-
-export default App;
