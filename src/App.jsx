@@ -1,11 +1,7 @@
-// import "./App.scss";
-import { Component, useEffect, useState } from "react";
+import "./App.scss";
+import { useEffect, useState } from "react";
 import Messages from "./Messages";
 import Input from "./Input";
-import {
-    generateRandomColor,
-    generateRandomName,
-} from "./util/helperFunctions.js";
 import Login from "./Login";
 
 // class App extends Component {
@@ -42,15 +38,7 @@ const App = () => {
     //     });
     // }
 
-    // const [chat, setChat] = useState({
-    //     member: {
-    //         username: generateRandomName(),
-    //         color: generateRandomColor(),
-    //     },
-    //     messages: []
-    // });
-
-    const initialChatState = {
+    const initChatState = {
         member: {
             username: "",
             color: "",
@@ -59,7 +47,9 @@ const App = () => {
         messages: [],
     };
 
-    const [chat, setChat] = useState(initialChatState);
+    const [chat, setChat] = useState(initChatState);
+    const [initMemberId, setInitMemberId] = useState(null);
+    const [members, setMembers] = useState({ online: [] });
     const [drone, setDrone] = useState(null);
 
     useEffect(() => {
@@ -70,6 +60,48 @@ const App = () => {
             setDrone(drone);
         }
     }, [chat.member]);
+
+    useEffect(() => {
+        const droneEvents = () => {
+            drone.on("open", (error) => {
+                if (error) {
+                    return console.error(error);
+                }
+                chat.member.id = drone.clientId;
+                if (initMemberId === null) {
+                    setInitMemberId(drone.clientId);
+                }
+                roomEvents();
+            });
+        };
+
+        const roomEvents = () => {
+            const room = drone.subscribe("observable-room");
+            room.on("open", (error) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log("Connected to the room");
+                }
+            });
+            room.on("members", (m) => { //Emits an array of members that have joined the room. This event is only triggered once, right after the user has successfully connected to the observable room -> list of members as ARRAY
+                setMembers((prevMembers) => ({
+                    ...prevMembers,
+                    online: m,
+                }));
+            });
+            room.on("member_join", (newMember) => { //Member join event is emitted when a new member joins the room - returns member OBJECT
+                setMembers((prevMembers) => ({
+                    ...prevMembers,
+                    online: [...prevMembers.online, newMember],
+                }));
+            });
+        };
+    });
+
+    // if(drone && !chat.member.id) {
+    //     droneEvents();
+    // }
 
     const onSendMessage = (message) => {
         this.drone.publish({
@@ -97,17 +129,6 @@ const App = () => {
                 </div>
             )}
         </>
-
-        // <div className="App">
-        //     <div className="App-header">
-        //         <h1>My Chat App</h1>
-        //     </div>
-        //     <Messages
-        //         messages={chat.messages}
-        //         currentMember={chat.member}
-        //     />
-        //     <Input onSendMessage={onSendMessage} />
-        // </div>
     );
 };
 
