@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Login from "./Login";
 import { CHANNEL_ID } from "./util/channel";
 import ChatHeader from "./ChatHeader";
+import MessageInput from "./MessageInput";
 
 const App = () => {
     const initChatState = {
@@ -19,7 +20,6 @@ const App = () => {
     const [chat, setChat] = useState(initChatState);
     const [initMemberId, setInitMemberId] = useState(null);
     const [members, setMembers] = useState({ online: [] });
-    const [isTyping, setIsTyping] = useState({ users: [] });
     const [drone, setDrone] = useState(null);
 
     useEffect(() => {
@@ -85,61 +85,19 @@ const App = () => {
         };
 
         const receiveMessage = (message) => {
-            // const {data, id, timestamp, clientId, member} = message;
-            if (
-                message.data.indexOf(message.clientId) === 0 || //If index of clientId from who sent the message === 0
-                message.data.indexOf(message.member.clientData.id) === 0 //And unique message id === 0
-            ) {
-                if (
-                    message.data.charAt(message.data.length - 1) === "1" && //If last character is equal to "1" ------ WHY?
-                    message.data.indexOf(chat.member.id) === -1 //And id is not present in the message.data string
-                ) {
-                    console.log(
-                        message.data.charAt(message.data.length - 1) === "1"
-                    ); //----------CHECK THIS IN CONSOLE
-                    const newIsTyping = {
-                        //Adds user who is typing
-                        ...isTyping,
-                        users: [
-                            ...isTyping.users,
-                            message.member.clientData.username,
-                        ],
-                    };
-                    setIsTyping(newIsTyping);
-                } else if (
-                    message.data.charAt(message.data.length - 1) === "0" && //If last character is 0 ----- WHY?
-                    message.data.indexOf(chat.member.id) === -1 //If member is not present
-                ) {
-                    const newIsTyping = { ...isTyping }; //Removes user who isn't typing anymore
-                    newIsTyping.users.splice(
-                        newIsTyping.users.indexOf(
-                            message.member.clientData.username
-                        ),
-                        1
-                    );
-                    setIsTyping(newIsTyping);
-                } else {
                     const newChat = {
                         ...chat,
                         messages: [...chat.messages, message],
                     };
                     setChat(newChat);
-                }
-            }
         };
 
         if (drone && !chat.member.id) {
             //If drone exists but member.id doesn't, call droneEvents again
             droneEvents();
         }
-    }, [chat, drone, isTyping, initMemberId, members]);
+    }, [chat, drone, initMemberId, members]);
 
-    // const onSendMessage = (message) => {
-    //     this.drone.publish({
-    //         room: "observable-room",
-    //         message,
-    //     });
-    // };
 
     return (
         <>
@@ -148,28 +106,13 @@ const App = () => {
                     <Login chat={chat} setChat={(obj) => setChat(obj)} />
                 </div>
             ) : ( //Else load everything chat related
-                <ChatHeader whoIsTyping={isTyping} members={members.online} />
-                
+                <div>
+                    <ChatHeader members={members.online} />
+                    <MessageInput thisMember={chat.member} sendMessage={(obj) => drone.publish(obj)}/>
+                </div>
             )}
         </>
     );
 };
 
 export default App;
-
-
-// render() {
-//     return (
-//         <div className="App">
-//             <div className="App-header">
-//                 <h1>My Chat App</h1>
-//             </div>
-//             <Messages
-//                 messages={this.state.messages}
-//                 currentMember={this.state.member}
-//             />
-//             <Input onSendMessage={this.onSendMessage} />
-//         </div>
-//     );
-// };
-// }

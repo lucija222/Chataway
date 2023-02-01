@@ -6,38 +6,6 @@ const ChatHeader = ({ whoIsTyping, members }) => {
             <div className="chat__header">
                 <h1 className="header__heading">
                     Chataway 
-                    <br />
-                    <span className="header__typing">
-                        {
-                            whoIsTyping.users.join(", ").length > 60 &&
-                                `${whoIsTyping.users.slice(0, 1)} and ${
-                                    whoIsTyping.users.length - 1
-                                } others are typing...` /*If userlist length is longer than 60*/
-                        }
-                        {whoIsTyping.users.length === 1 &&
-                            `${whoIsTyping.users} is typing...`}
-                        {whoIsTyping.users.length === 2 &&
-                            `${whoIsTyping.users.join(" and ")} are typing...`}
-                        {
-                            whoIsTyping.users.length === 3 &&
-                                `${whoIsTyping.users
-                                    .slice(0, whoIsTyping.users.length - 1)
-                                    .join(", ")} and ${
-                                    whoIsTyping.users[
-                                        whoIsTyping.users.length - 1
-                                    ]
-                                } are typing...` /*grabs first 2 users by slice, and third one by index of last*/
-                        }
-                        {
-                            whoIsTyping.users > 3
-                                ? `${whoIsTyping.users
-                                      .slice(0, 2)
-                                      .join(", ")} and ${
-                                      whoIsTyping.users.length - 2
-                                  } others are typing...`
-                                : null /*First 2 users + number of others else null*/
-                        }
-                    </span>
                 </h1>
             </div>
             <div className="onlineMembers-container">

@@ -12,28 +12,51 @@ const MessageInput = (sendMessage, thisMember) => {
     let inputRef;
     useEffect(() => inputRef.focus(), [inputRef]);
 
-    const timeoutRef = useRef(null);
-    const isTyping = (typing) => {
-        const message = `${thisMember.id} ${thisMember.username} ${typing}`;
-        sendMessage({
-            room: "observable-room",
-            message
-        });
+    const handleInputChange = (e) => {
+        setInput({ ...input, text: e.target.value });
     };
 
-    useEffect(() => {
-        if (input.text && inputRef === document.activeElement) {
-            if (timeoutRef.current !== null) {
-                clearTimeout(timeoutRef.current);
-            } else {
-                isTyping("1");
-                timeoutRef.current = setTimeout(() => {
-                    timeoutRef.current = null;
-                    isTyping("0");
-                }, 1000);
-            }
+    const publishInput = (e) => {
+        e.preventDefault();
+        if (input.text === "") {
+            setInput({
+                ...input,
+                text: e.target.value,
+            });
+        } else {
+            const message = input.text;
+            sendMessage({
+                room: "observable-room",
+                message,
+            });
+            setInput({ text: "", placeholder: placeholder[0] });
         }
-    }, [input]);
+    };
+
+    return (
+        <div className="chat__input">
+            <form className="msg-form" onSubmit={publishInput}>
+                <input
+                    className="msg-form__input"
+                    type="text"
+                    value={input.text}
+                    autoFocus={true}
+                    placeholder={input.placeholder}
+                    ref={(input) => {
+                        inputRef = input;
+                    }}
+                    onChange={handleInputChange}
+                />
+                <button
+                    className="msg-form__btn"
+                    type="button"
+                    onClick={publishInput}
+                >
+                    Send
+                </button>
+            </form>
+        </div>
+    );
 };
 
 export default MessageInput;

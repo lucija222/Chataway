@@ -9,15 +9,11 @@ $zero-px: 0px;
     width: 230px;
   }
   
-  .login-form__avatar {
+  .avatar {
     margin: 5px;
     width: 60px;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid transparent;
     border-radius: 6px;
-    transition: border-color 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -31,17 +27,15 @@ $zero-px: 0px;
       }
   }
   
-  .login-form__avatar--selected {
+  .avatar__selected {
     background-color: rgb(35, 62, 83);
     border-color: rgb(45, 202, 255);
     transform: scale(1.2);
   }
   
-  .login-form__avatar--disabled {
+  .avatar__disabled {
     opacity: 0.5;
-    border-color: transparent;
-    border-style: none;
-    border-width: $zero-px;
+    border: $zero-px none transparent;
     border-radius: $zero-px;
     transition: none;
 
@@ -52,27 +46,9 @@ $zero-px: 0px;
       }
   }
   
-  .login-form__avatar--animation {
+  .avatar__animation {
     animation-name: flash;
     animation-duration: 0.8s;
-  }
-  
-  @-webkit-keyframes flash {
-    0% {
-      transform: scale(1);
-    }
-    20% {
-      transform: scale(1.15);
-    }
-    40% {
-      transform: scale(1);
-    }
-    80% {
-      transform: scale(1.15);
-    }
-    100% {
-      transform: scale(1);
-    }
   }
   
   @keyframes flash {

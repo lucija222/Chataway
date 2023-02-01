@@ -13,12 +13,12 @@ const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
             <li
                 className={
                     random
-                        ? "login-form__avatar login-form__avatar--disabled"
+                        ? "avatar avatar__disabled"
                         : selectedAvatar === img_alt
-                        ? "login-form__avatar login-form__avatar--selected"
+                        ? "avatar avatar__selected"
                         : avatarAnimation
-                        ? "login-form__avatar login-form__avatar--animation"
-                        : "login-form__avatar"
+                        ? "avatar avatar__animation"
+                        : "avatar"
                 }
                 key={index}
             >
