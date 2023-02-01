@@ -149,6 +149,7 @@ const App = () => {
                 </div>
             ) : ( //Else load everything chat related
                 <ChatHeader whoIsTyping={isTyping} members={members.online} />
+                
             )}
         </>
     );

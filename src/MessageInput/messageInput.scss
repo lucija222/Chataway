@@ -1,0 +1,33 @@
+.chat__input {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+  }
+  
+  .msg-form {
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  
+  .msg-form__input {
+    padding: 15px 0px;
+    font-size: 16px;
+    flex-grow: 1;
+    color:  rgb(43, 43, 43);
+    background-color: rgb(245, 245, 245);
+    border: none;
+    user-select: auto;
+  }
+  
+  .msg-form__input::selection {
+    background-color:  lightgray;
+  }
+  
+  .msg-form__btn {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    padding: 0 15px 0 20px;
+  }
+  
