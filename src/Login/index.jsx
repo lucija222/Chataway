@@ -4,7 +4,7 @@ import {
     generateRandomColor,
     generateRandomName,
 } from "../util/helperFunctions.js";
-import './login.scss';
+import "./login.scss";
 
 const Login = ({ chat, setChat }) => {
     const [avatar, setAvatar] = useState("");
@@ -59,21 +59,25 @@ const Login = ({ chat, setChat }) => {
 
     return (
         <div className="form-container">
-            <form className="reg-gorm" onSubmit={handleFormSubmit}>
+            <form className="login-form" onSubmit={handleFormSubmit}>
+                <label htmlFor="login-input" className={random ? "login-form__input-label-disabled" : "login-form__input-label"}>Enter username:</label>
                 <input
+                    id="login-input"
+                    className={random ? "login-form__input-disabled" : "login-form__input"}
                     type="text"
-                    placeholder="Enter your name"
+                    pattern="[^' ']+"
+                    placeholder="No spaces allowed"
                     maxLength="15"
                     required
                     value={username}
                     onChange={getUsername}
                     disabled={random ? "disabled" : false}
-                />
+                /> <br />
                 <span
                     className={
                         random
-                            ? "reg-form__span reg-form__span--disabled"
-                            : "reg-form__span"
+                            ? "login-form__span login-form__span--disabled"
+                            : "login-form__span"
                     }
                 >
                     Choose your Avatar:
@@ -84,12 +88,17 @@ const Login = ({ chat, setChat }) => {
                     avatarAnimation={avatarAnimation}
                     selectedAvatar={selectedAvatar}
                 />
-                <div className="reg-form__random-checkbox">
+                <div className="login-form__random-checkbox">
+                    <input
+                        type="checkbox"
+                        id="randomizeUser"
+                        onClick={getRandom}
+                    />
                     <label htmlFor="randomizeUser">
-                        <input type="checkbox" id="randomizeUser" onClick={getRandom}/>
+                        Randomize username & color
                     </label>
                 </div>
-                <button className="reg-form-btn" type="submit">
+                <button id="login-form__submit-button" >
                     Start chatting
                 </button>
             </form>

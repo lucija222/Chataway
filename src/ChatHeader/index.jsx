@@ -5,7 +5,7 @@ const ChatHeader = ({ whoIsTyping, members }) => {
         <div>
             <div className="chat__header">
                 <h1 className="header__heading">
-                    Chat
+                    Chataway 
                     <br />
                     <span className="header__typing">
                         {

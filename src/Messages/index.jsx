@@ -39,8 +39,11 @@ const Messages = ({ messages, thisMember, initMemberId }) => {
             </div>
         );
 
-        const listItem = 
+        // const listItem = 
     };
+     return (
+        
+     );
 };
 
 export default Messages;

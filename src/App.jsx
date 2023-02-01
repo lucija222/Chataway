@@ -144,7 +144,7 @@ const App = () => {
     return (
         <>
             {!chat.member.username ? ( //If no username, load login
-                <div className="reg-container">
+                <div>
                     <Login chat={chat} setChat={(obj) => setChat(obj)} />
                 </div>
             ) : ( //Else load everything chat related

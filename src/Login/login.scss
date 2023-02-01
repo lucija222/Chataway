@@ -1,68 +1,90 @@
+$font18: 18px;
+$light-base-color: #21d3f7;
+$dark-base-color: #025683;
+$off-white-color: #e3f7ff;
+$flex: flex;
+
 .form-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
+    display: $flex;
     justify-content: center;
     height: 100vh;
-  }
-  
-  .reg-form {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    height: 500px;
-    width: 300px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
+    width: 100vw;
+    background: rgb(0, 209, 224);
+    background: radial-gradient(
+        circle,
+        rgba(0, 209, 224, 1) 45%,
+        rgba(0, 126, 173, 1) 87%,
+        rgba(1, 74, 129, 1) 100%
+    );
+}
+
+.login-form {
+    margin-top: 7%;
+    padding: 20px;
+    height: 62vh;
+    width: 25vw;
+    min-width: 260px;
+    min-height: 370px;
+    display: $flex;
     flex-direction: column;
-    -webkit-box-pack: space-evenly;
-    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    background-color: var(--regFormBg);
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    background-color: #11171b;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-  }
-  
-  .reg-form__txt-input {
+    border-radius: 8px;
+}
+
+.login-form__input-label {
+    font-size: $font18;
+    color: $light-base-color;
+}
+
+.login-form__input-label-disabled {
+    font-size: $font18;
+    color: rgb(78, 78, 78);
+}
+
+.login-form__input {
     padding: 5px;
     font-size: 16px;
-    border: 1px solid var(--regFormTxtInputBorder);
-  }
-  
-  .reg-form__span {
-    color: var(--regFormSpanColor);
-  }
-  
-  .reg-form__span--disabled {
-    color: var(--regFormSpanColorDisabled);
-  }
-  
-  .reg-form__room-select {
-    border: 1px solid var(--regFormRoomSelectBorder);
-  }
-  
-  .reg-form__random-checkbox {
-    color: var(--regFormRandomCheckboxColor);
-  }
-  
-  .reg-form__btn {
+    border: 3px solid $light-base-color;
+    border-radius: 3px;
+    background-color: #c7dde6;
+
+    &:hover {
+        background-color: #b3e9ff;
+    }
+}
+
+.login-form__input-disabled {
+    padding: 5px;
+    font-size: 16px;
+    border: 3px solid #acacac;
+    border-radius: 3px;
+    background-color: #d3cfcf;
+}
+
+.login-form__span,
+.login-form__random-checkbox {
+    font-size: $font18;
+    color: $off-white-color;
+}
+
+.login-form__span--disabled {
+    color: rgb(78, 78, 78);
+}
+
+#login-form__submit-button {
     padding: 5px 10px;
     font-size: 16px;
-    background-color: var(--regFormButtonBg);
-    color: var(--regFormButtonColor);
-    border: none;
-  }
-  
-  .reg-form__btn:hover {
-    cursor: pointer;
-    background-color: var(--regFormButtonHoverBg);
-  }
-  
+    border: 2px solid $dark-base-color;
+    border-radius: 3px;
+    background-color: $dark-base-color;
+    color: $off-white-color;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $light-base-color;
+        color: $dark-base-color;
+    }
+}

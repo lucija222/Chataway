@@ -13,12 +13,12 @@ const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
             <li
                 className={
                     random
-                        ? "reg-form__avatar reg-form__avatar--disabled"
+                        ? "login-form__avatar login-form__avatar--disabled"
                         : selectedAvatar === img_alt
-                        ? "reg-form__avatar reg-form__avatar--selected"
+                        ? "login-form__avatar login-form__avatar--selected"
                         : avatarAnimation
-                        ? "reg-form__avatar reg-form__avatar--animation"
-                        : "reg-form__avatar"
+                        ? "login-form__avatar login-form__avatar--animation"
+                        : "login-form__avatar"
                 }
                 key={index}
             >
@@ -28,7 +28,7 @@ const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
     };
 
     return (
-        <ul className="reg-form__avatar-list">
+        <ul className="login-form__avatar-list">
             {avatars.map((avatar, index) => renderAvatars(avatar, index))}
         </ul>
     );
