@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { classNames } from "../util/helperFunctions";
+import './messages.scss';
 
-const Messages = ({ messages, thisMember, initMemberId }) => {
+const Messages = ({ messages, thisMember, /*initMemberId*/ }) => {
     const bottomDiv = useRef();
     let sameMember = "";
 
@@ -12,7 +13,7 @@ const Messages = ({ messages, thisMember, initMemberId }) => {
     const renderMessage = (message) => {
         // console.log(message);
         const { member, data, id } = message;
-        const classNamesArray = [message, thisMember, initMemberId];
+        const classNamesArray = [message, thisMember/*, initMemberId*/];
         // console.log(classNamesArray);
 
         const memberData = (
@@ -69,6 +70,7 @@ const Messages = ({ messages, thisMember, initMemberId }) => {
      return (
         <ul className="msg-list">
             {messages.map((m) => renderMessage(m))}
+            {console.log(messages)}
             <div ref={bottomDiv}></div>
         </ul>
      );

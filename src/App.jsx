@@ -1,7 +1,5 @@
 import "./App.scss";
 import { useEffect, useState } from "react";
-// import Messages from "./Messages";
-// import Input from "./Input";
 import Login from "./Login";
 import { CHANNEL_ID } from "./util/channel";
 import ChatHeader from "./ChatHeader";
@@ -19,7 +17,7 @@ const App = () => {
     };
 
     const [chat, setChat] = useState(initChatState);
-    const [initMemberId, setInitMemberId] = useState(null);
+    // const [initMemberId, setInitMemberId] = useState(null);
     const [members, setMembers] = useState({ online: [] });
     const [drone, setDrone] = useState(null);
 
@@ -39,9 +37,9 @@ const App = () => {
                     return console.error(error);
                 }
                 chat.member.id = drone.clientId;
-                if (initMemberId === null) {
-                    setInitMemberId(drone.clientId);
-                }
+                // if (initMemberId === null) {
+                //     setInitMemberId(drone.clientId);
+                // }
                 roomEvents();
             });
         };
@@ -80,6 +78,15 @@ const App = () => {
                 };
                 setMembers(newMembers);
             });
+
+            // room.on("data", (data, member) => {
+            //     const newChat = {
+            //          ...chat,
+            //          messages: [...chat.messages, {member, data: data}],
+            //      };
+            //      setChat(newChat);
+            // });
+        
             room.on("message", (message) => {
                 receiveMessage(message);
             });
@@ -94,10 +101,11 @@ const App = () => {
         };
 
         if (drone && !chat.member.id) {
+            console.log(chat);
             //If drone exists but member.id doesn't, call droneEvents again
             droneEvents();
         }
-    }, [chat, drone, initMemberId, members]);
+    }, [chat, drone, /*initMemberId,*/ members]);
 
     return (
         <>
@@ -112,7 +120,7 @@ const App = () => {
                     <Messages
                         messages={chat.messages}
                         thisMember={chat.member}
-                        initMemberId={initMemberId}
+                        // initMemberId={initMemberId}
                     />
                     <MessageInput sendMessage={(obj) => drone.publish(obj)} />
                 </div>
