@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./messageInput.scss";
 
-const MessageInput = (sendMessage, thisMember) => {
+const MessageInput = ({sendMessage}) => {
     const placeholder = [
         "Enter your message...",
         "Please type something first!",
@@ -9,8 +9,8 @@ const MessageInput = (sendMessage, thisMember) => {
     const initInput = { text: "", placeholder: placeholder[0] };
     const [input, setInput] = useState(initInput);
 
-    let inputRef;
-    useEffect(() => inputRef.focus(), [inputRef]);
+    // let inputRef;
+    // useEffect(() => inputRef.focus(), [inputRef]);
 
     const handleInputChange = (e) => {
         setInput({ ...input, text: e.target.value });
@@ -42,9 +42,9 @@ const MessageInput = (sendMessage, thisMember) => {
                     value={input.text}
                     autoFocus={true}
                     placeholder={input.placeholder}
-                    ref={(input) => {
-                        inputRef = input;
-                    }}
+                    // ref={(input) => {
+                    //     inputRef = input;
+                    // }}
                     onChange={handleInputChange}
                 />
                 <button

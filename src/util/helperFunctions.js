@@ -1,3 +1,46 @@
+export const classNames = (message, thisMember, initMemberId, whichClass ) => {
+    const { member, id } = message;
+
+    const x = () => {
+        console.log(message);
+    }
+    x();
+
+    const thisMemberMessage =
+        member.id === thisMember.id ||
+        message.from_me ||
+        member.clientData.id === initMemberId;
+
+    let classNameMessage = thisMemberMessage
+        ? "msg-list__msg msg-list__msg--thisMember"
+        : "msg-list__msg";
+
+    const classNameMemberData = thisMemberMessage 
+    ? "msg-list__member-data msg-list__member-data--thisMember"
+    : "msg-list__member-data";
+
+    const classNameInfoContainer = thisMemberMessage
+    ? "msg-list__info-container msg-list__info-container--thisMember"
+    : "msg-list__info-container";
+
+    const classNameTextContainer = thisMemberMessage 
+    ? "msg-list__text-container msg-list__text-container--thisMember"
+    : "msg-list__text-container";
+
+    switch (whichClass) {
+        case "classNameMessage":
+          return classNameMessage;
+        case "classNameMemberData":
+          return classNameMemberData;
+        case "classNameInfoContainer":
+          return classNameInfoContainer;
+        case "classNameTextContainer":
+          return classNameTextContainer;
+        default:
+          return undefined;
+      }
+};
+
 export const generateRandomColor = () => {
     return "#" + Math.floor(Math.random() * 0xffffff).toString(16);
 };

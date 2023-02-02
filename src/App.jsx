@@ -6,6 +6,7 @@ import Login from "./Login";
 import { CHANNEL_ID } from "./util/channel";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
+import Messages from "./Messages";
 
 const App = () => {
     const initChatState = {
@@ -85,11 +86,11 @@ const App = () => {
         };
 
         const receiveMessage = (message) => {
-                    const newChat = {
-                        ...chat,
-                        messages: [...chat.messages, message],
-                    };
-                    setChat(newChat);
+            const newChat = {
+                ...chat,
+                messages: [...chat.messages, message],
+            };
+            setChat(newChat);
         };
 
         if (drone && !chat.member.id) {
@@ -98,17 +99,22 @@ const App = () => {
         }
     }, [chat, drone, initMemberId, members]);
 
-
     return (
         <>
             {!chat.member.username ? ( //If no username, load login
                 <div>
                     <Login chat={chat} setChat={(obj) => setChat(obj)} />
                 </div>
-            ) : ( //Else load everything chat related
+            ) : (
+                //Else load everything chat related
                 <div>
                     <ChatHeader members={members.online} />
-                    <MessageInput thisMember={chat.member} sendMessage={(obj) => drone.publish(obj)}/>
+                    <Messages
+                        messages={chat.messages}
+                        thisMember={chat.member}
+                        initMemberId={initMemberId}
+                    />
+                    <MessageInput sendMessage={(obj) => drone.publish(obj)} />
                 </div>
             )}
         </>

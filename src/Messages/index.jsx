@@ -1,18 +1,22 @@
 import { useEffect, useRef } from "react";
+import { classNames } from "../util/helperFunctions";
 
 const Messages = ({ messages, thisMember, initMemberId }) => {
     const bottomDiv = useRef();
+    let sameMember = "";
 
     useEffect(() => {
         bottomDiv.current.scrollIntoView();
     }, [messages.length]);
 
     const renderMessage = (message) => {
-        const { member, id } = message;
-        const classNames = [message, thisMember, initMemberId];
+        // console.log(message);
+        const { member, data, id } = message;
+        const classNamesArray = [message, thisMember, initMemberId];
+        // console.log(classNamesArray);
 
-        const divMemberData = (
-            <div className={classNames(...classNames, "classNameMemberData")}>
+        const memberData = (
+            <div className={classNames(...classNamesArray, "classNameMemberData")}>
                 {member.clientData.color ? (
                     <span
                         className="msg-list__avatar--random"
@@ -28,7 +32,7 @@ const Messages = ({ messages, thisMember, initMemberId }) => {
 
                 <div
                     className={classNames(
-                        ...classNameArgs,
+                        ...classNamesArray,
                         "classNameInfoContainer"
                     )}
                 >
@@ -39,10 +43,34 @@ const Messages = ({ messages, thisMember, initMemberId }) => {
             </div>
         );
 
-        // const listItem = 
+        const textContainer = (
+            <div className={classNames(...classNamesArray, "classNameTextContainer")}>
+                <div className="msg-list__text">{data}</div>
+            </div>
+        );
+
+        const listItem = (sameMember !== member.id) ? (
+            <li className={classNames(...classNamesArray, "classNameMsg")} data-id={member.id} key={id}>
+                <div>
+                    {memberData}
+                    {textContainer}
+                </div>
+            </li>
+        ) : (
+            <li className={classNames(...classNamesArray, "classNameMsg")} data-id={member.id} key={id}>
+                {textContainer}
+            </li>
+        );
+
+        sameMember = member ? member.id : null;
+
+        return listItem;
     };
      return (
-        
+        <ul className="msg-list">
+            {messages.map((m) => renderMessage(m))}
+            <div ref={bottomDiv}></div>
+        </ul>
      );
 };
 

@@ -1,6 +1,6 @@
 import "./chatHeader.scss";
 
-const ChatHeader = ({ whoIsTyping, members }) => {
+const ChatHeader = ({  members }) => {
     return (
         <div>
             <div className="chat__header">
