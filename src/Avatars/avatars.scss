@@ -7,11 +7,12 @@ $zero-px: 0px;
     flex-direction: row;
     flex-wrap: wrap;
     width: 230px;
+    padding-top: 12px;
   }
   
   .avatar {
     margin: 5px;
-    width: 60px;
+    width: 63px;
     border: 1px solid transparent;
     border-radius: 6px;
     transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
@@ -21,9 +22,6 @@ $zero-px: 0px;
     &:hover {
         cursor: pointer;
         transform: scale(1.2);
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 6px;
       }
   }
   
@@ -36,7 +34,6 @@ $zero-px: 0px;
   .avatar__disabled {
     opacity: 0.5;
     border: $zero-px none transparent;
-    border-radius: $zero-px;
     transition: none;
 
     &:hover {

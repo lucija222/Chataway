@@ -67,24 +67,19 @@ const App = () => {
             room.on("member_leave", ({ id }) => {
                 console.log("member_leave");
                 //Member leave event is emitted when a member leaves the room.
-                const index = members.online.findIndex(
-                    (member) => member.id === id
-                );
-                // const newMembers = {
-                //     ...members,
-                //     online: [
-                //         ...members.online.slice(0, index),
-                //         ...members.online.slice(index + 1),
-                //     ],
-                // };
-                // setMembers(newMembers);
-                setMembers((prevMembers) => ({
-                        // ...prevMembers,
-                        online: [
-                            ...prevMembers.online.slice(0, index),
-                            ...prevMembers.online.slice(index + 1)
-                        ]
-                    }));
+                setMembers((prevMembers) => { 
+                    const index = prevMembers.online.findIndex(
+                      (member) => member.id === id
+                    );
+                    return {
+                      ...prevMembers,
+                      online: [
+                        ...prevMembers.online.slice(0, index),
+                        ...prevMembers.online.slice(index + 1)
+                      ]
+                    }; 
+                  });
+     
             });
 
             room.on("message", (message) => {

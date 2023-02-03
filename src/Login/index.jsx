@@ -60,6 +60,9 @@ const Login = ({ chat, setChat }) => {
     return (
         <div className="form-container">
             <form className="login-form" onSubmit={handleFormSubmit}>
+                <figure>
+                    <figcaption id="figcaption1">Customize profile</figcaption>
+                <div className="customizeUser">
                 <label htmlFor="login-input" className={random ? "login-form__input-label-disabled" : "login-form__input-label"}>Enter username:</label>
                 <input
                     id="login-input"
@@ -88,6 +91,12 @@ const Login = ({ chat, setChat }) => {
                     avatarAnimation={avatarAnimation}
                     selectedAvatar={selectedAvatar}
                 />
+                </div>
+                </figure>
+                <div className="orDiv">OR</div>
+                <figure>
+                    <div className="randomizeUser">
+                    <figcaption id="figcaption2">Randomize profile</figcaption>
                 <div className="login-form__random-checkbox">
                     <input
                         type="checkbox"
@@ -95,9 +104,11 @@ const Login = ({ chat, setChat }) => {
                         onClick={getRandom}
                     />
                     <label htmlFor="randomizeUser">
-                        Randomize username & color
+                        Generate username & color
                     </label>
                 </div>
+                </div>
+                </figure>
                 <button id="login-form__submit-button" >
                     Start chatting
                 </button>
