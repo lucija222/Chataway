@@ -1,15 +1,9 @@
-export const classNames = (message, thisMember, /*initMemberId,*/ whichClass ) => {
-    const { member, id} = message;
-
-    // const x = () => {
-    //     console.log(member);
-    // }
-    // x();
+export const classNames = (message, thisMember, whichClass ) => {
+    const { member} = message;
 
     const thisMemberMessage =
         member.id === thisMember.id ||
         message.from_me 
-        // member.clientData.id === initMemberId;
 
     let classNameMessage = thisMemberMessage
         ? "msg-list__msg msg-list__msg--thisMember"

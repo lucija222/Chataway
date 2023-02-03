@@ -17,10 +17,8 @@ const App = () => {
     };
 
     const [chat, setChat] = useState(initChatState);
-    // const [initMemberId, setInitMemberId] = useState(null);
     const [members, setMembers] = useState({ online: [] });
     const [drone, setDrone] = useState(null);
-    // const [newMessage, setNewMessage] = useState(false);
 
     useEffect(() => {
         if (chat.member.username !== "") {
@@ -29,23 +27,15 @@ const App = () => {
             });
             setDrone(drone);
         }
-        console.log("useEffect 1 ran");
     }, [chat.member]);
 
     useEffect(() => {
-        const x = () => {
-            console.log("useEffect 2 ran");
-        };
-        x();
         const droneEvents = () => {
             drone.on("open", (error) => {
                 if (error) {
                     return console.error(error);
                 }
                 chat.member.id = drone.clientId;
-                // if (initMemberId === null) {
-                //     setInitMemberId(drone.clientId);
-                // }
                 roomEvents();
             });
         };
@@ -107,11 +97,10 @@ const App = () => {
         };
 
         if (drone && !chat.member.id) {
-            console.log(`${chat}`);
             //If drone exists but member.id doesn't, call droneEvents again
             droneEvents();
         }
-    }, [chat, drone, /*initMemberId,*/ members /*newMessage*/]);
+    }, [chat, drone, members]);
 
     const publishMessage = (object) => {
         drone.publish(object);
@@ -133,7 +122,6 @@ const App = () => {
                     <Messages
                         messages={chat.messages}
                         thisMember={chat.member}
-                        // initMemberId={initMemberId}
                     />
                     <MessageInput sendMessage={publishMessage} />
                 </div>

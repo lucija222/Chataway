@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { classNames } from "../util/helperFunctions";
 import './messages.scss';
 
-const Messages = ({ messages, thisMember, /*initMemberId*/ }) => {
+const Messages = ({ messages, thisMember}) => {
     const scrollIntoView = useRef();
     let sameMember = "";
 
@@ -11,10 +11,8 @@ const Messages = ({ messages, thisMember, /*initMemberId*/ }) => {
     }, [messages.length]);
 
     const renderMessage = (message) => {
-        // console.log(message);
         const { member, data, id } = message;
-        const classNamesArray = [message, thisMember/*, initMemberId*/];
-        // console.log(classNamesArray);
+        const classNamesArray = [message, thisMember];
 
         const memberData = (
             <div className={classNames(...classNamesArray, "classNameMemberData")}>

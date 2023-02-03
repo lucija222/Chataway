@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./messageInput.scss";
 
 const MessageInput = ({sendMessage}) => {
@@ -9,8 +9,8 @@ const MessageInput = ({sendMessage}) => {
     const initInput = { text: "", placeholder: placeholder[0] };
     const [input, setInput] = useState(initInput);
 
-    // let inputRef;
-    // useEffect(() => inputRef.focus(), [inputRef]);
+    let inputRef;
+    useEffect(() => inputRef.focus(), [inputRef]);
 
     const handleInputChange = (e) => {
         setInput({ ...input, text: e.target.value });
@@ -40,18 +40,16 @@ const MessageInput = ({sendMessage}) => {
                     className="msg-form__input"
                     type="text"
                     value={input.text}
-                    autoFocus={true}
                     placeholder={input.placeholder}
-                    // ref={(input) => {
-                    //     inputRef = input;
-                    // }}
+                    ref={(input) => {
+                        inputRef = input;
+                    }}
                     onChange={handleInputChange}
                 />
                 <button
                     className="msg-form__btn"
                     type="submit"
                 >
-                    {/* {console.log("send button", input)} */}
                     Send
                 </button>
             </form>
