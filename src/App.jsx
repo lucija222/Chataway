@@ -20,6 +20,7 @@ const App = () => {
     // const [initMemberId, setInitMemberId] = useState(null);
     const [members, setMembers] = useState({ online: [] });
     const [drone, setDrone] = useState(null);
+    // const [newMessage, setNewMessage] = useState(false);
 
     useEffect(() => {
         if (chat.member.username !== "") {
@@ -28,9 +29,14 @@ const App = () => {
             });
             setDrone(drone);
         }
+        console.log("useEffect 1 ran");
     }, [chat.member]);
 
     useEffect(() => {
+        const x = () => {
+            console.log("useEffect 2 ran");
+        };
+        x();
         const droneEvents = () => {
             drone.on("open", (error) => {
                 if (error) {
@@ -45,8 +51,10 @@ const App = () => {
         };
 
         const roomEvents = () => {
+            console.log("roomevents ran");
             const room = drone.subscribe("observable-room");
             room.on("open", (error) => {
+                console.log("open");
                 if (error) {
                     console.error(error);
                 } else {
@@ -54,10 +62,12 @@ const App = () => {
                 }
             });
             room.on("members", (m) => {
+                console.log("members");
                 //Emits an array of members that have joined the room. This event is only triggered once, right after the user has successfully connected to the observable room -> list of members as ARRAY
                 setMembers({ online: m });
             });
             room.on("member_join", (newMember) => {
+                console.log("member_join");
                 //Member join event is emitted when a new member joins the room - returns member OBJECT
                 setMembers((prevMembers) => ({
                     ...prevMembers,
@@ -65,47 +75,48 @@ const App = () => {
                 }));
             });
             room.on("member_leave", ({ id }) => {
+                console.log("member_leave");
                 //Member leave event is emitted when a member leaves the room.
                 const index = members.online.findIndex(
                     (member) => member.id === id
                 );
-                const newMembers = {
-                    ...members,
-                    online: [
-                        ...members.online.slice(0, index),
-                        ...members.online.slice(index + 1),
-                    ],
-                };
-                setMembers(newMembers);
+                // const newMembers = {
+                //     ...members,
+                //     online: [
+                //         ...members.online.slice(0, index),
+                //         ...members.online.slice(index + 1),
+                //     ],
+                // };
+                // setMembers(newMembers);
+                setMembers((prevMembers) => ({
+                        // ...prevMembers,
+                        online: [
+                            ...prevMembers.online.slice(0, index),
+                            ...prevMembers.online.slice(index + 1)
+                        ]
+                    }));
             });
 
-            // room.on("data", (data, member) => {
-            //     const newChat = {
-            //          ...chat,
-            //          messages: [...chat.messages, {member, data: data}],
-            //      };
-            //      setChat(newChat);
-            // });
-        
             room.on("message", (message) => {
-                receiveMessage(message);
+                console.log("MESSAGE RAN", message);
+                setChat((prevChat) => ({
+                    ...prevChat,
+                    messages: [...prevChat.messages, message],
+                }));
             });
-        };
-
-        const receiveMessage = (message) => {
-            const newChat = {
-                ...chat,
-                messages: [...chat.messages, message],
-            };
-            setChat(newChat);
         };
 
         if (drone && !chat.member.id) {
-            console.log(chat);
+            console.log(`${chat}`);
             //If drone exists but member.id doesn't, call droneEvents again
             droneEvents();
         }
-    }, [chat, drone, /*initMemberId,*/ members]);
+    }, [chat, drone, /*initMemberId,*/ members /*newMessage*/]);
+
+    const publishMessage = (object) => {
+        drone.publish(object);
+    };
+
 
     return (
         <>
@@ -116,13 +127,15 @@ const App = () => {
             ) : (
                 //Else load everything chat related
                 <div>
+                    {" "}
+                    {console.log("CHAT", chat.messages)}
                     <ChatHeader members={members.online} />
                     <Messages
                         messages={chat.messages}
                         thisMember={chat.member}
                         // initMemberId={initMemberId}
                     />
-                    <MessageInput sendMessage={(obj) => drone.publish(obj)} />
+                    <MessageInput sendMessage={publishMessage} />
                 </div>
             )}
         </>

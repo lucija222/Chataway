@@ -3,11 +3,11 @@ import { classNames } from "../util/helperFunctions";
 import './messages.scss';
 
 const Messages = ({ messages, thisMember, /*initMemberId*/ }) => {
-    const bottomDiv = useRef();
+    const scrollIntoView = useRef();
     let sameMember = "";
 
     useEffect(() => {
-        bottomDiv.current.scrollIntoView();
+        scrollIntoView.current.scrollIntoView();
     }, [messages.length]);
 
     const renderMessage = (message) => {
@@ -70,8 +70,8 @@ const Messages = ({ messages, thisMember, /*initMemberId*/ }) => {
      return (
         <ul className="msg-list">
             {messages.map((m) => renderMessage(m))}
-            {console.log(messages)}
-            <div ref={bottomDiv}></div>
+            {console.log("Messages comp", messages)}
+            <span ref={scrollIntoView} className="scrollIntoView"/> {/*ADD CLASS TO CSS*/}
         </ul>
      );
 };

@@ -1,10 +1,10 @@
 export const classNames = (message, thisMember, /*initMemberId,*/ whichClass ) => {
     const { member, id} = message;
 
-    const x = () => {
-        console.log(member);
-    }
-    x();
+    // const x = () => {
+    //     console.log(member);
+    // }
+    // x();
 
     const thisMemberMessage =
         member.id === thisMember.id ||

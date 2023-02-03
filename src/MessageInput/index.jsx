@@ -21,7 +21,7 @@ const MessageInput = ({sendMessage}) => {
         if (input.text === "") {
             setInput({
                 ...input,
-                text: e.target.value,
+                placeholder: placeholder[1]
             });
         } else {
             const message = input.text;
@@ -49,9 +49,9 @@ const MessageInput = ({sendMessage}) => {
                 />
                 <button
                     className="msg-form__btn"
-                    type="button"
-                    onClick={publishInput}
+                    type="submit"
                 >
+                    {/* {console.log("send button", input)} */}
                     Send
                 </button>
             </form>
