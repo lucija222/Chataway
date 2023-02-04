@@ -110,7 +110,7 @@ const App = () => {
                 </div>
             ) : (
                 //Else load everything chat related
-                <div className="caht-container">
+                <div className="chat">
                     {" "}
                     {console.log("CHAT", chat.messages)}
                     <ChatHeader members={members.online} />
