@@ -1,8 +1,19 @@
+//---------------------VARIABLES
 $font18: 18px;
 $light-base-color: #21d3f7;
 $dark-base-color: #025683;
 $off-white-color: #e3f7ff;
+$white: white;
 $flex: flex;
+
+//--------------------PLACEHOLDER SELECTORS
+%figcaption {
+    font-size: 25px;
+    color: $white;
+    position: absolute;
+    background-color: #11171b;
+    padding: 0 6px;
+}
 
 //----------GENERAL
 .form-container {
@@ -20,9 +31,9 @@ $flex: flex;
 }
 
 .login-form {
-    margin-top: 7%;
+    transform: translateY(15%);
     padding: 30px 20px;
-    height: 66vh;
+    height: 67vh;
     width: 25vw;
     min-width: 308px;
     max-width: 400px;
@@ -39,14 +50,13 @@ $flex: flex;
 
 .orDiv {
     font-size: 20px;
-    color: white;
-    // font-style: italic;
+    color: $white;
     padding: 10px 0 20px;
     font-weight: 500;
 }
 
 #login-form__submit-button {
-    margin-top: 10px;
+    transform: translateY(25%);
     padding: 5px 10px;
     font-size: 16px;
     border: 3px solid $dark-base-color;
@@ -62,7 +72,7 @@ $flex: flex;
     }
 }
 
-//-----------CUSTOMIZE USER
+//--------------------------CUSTOMIZE USER
 .login-form__input-label {
     padding-bottom: 5px;
     font-size: $font18;
@@ -95,7 +105,7 @@ $flex: flex;
     background-color: #d3cfcf;
 }
 
-.login-form__span{
+.login-form__span {
     margin-top: 10px;
     font-size: $font18;
     color: $off-white-color;
@@ -111,6 +121,10 @@ $flex: flex;
     color: $light-base-color;
 }
 
+.checkbox-text:hover {
+    cursor: pointer;
+}
+
 figure {
     position: relative;
     border: 2px solid rgba(white, 0.2);
@@ -119,11 +133,9 @@ figure {
 }
 
 #figcaption1 {
-    font-size: 25px;
-    color: white;
-    position: absolute;
+    @extend %figcaption;
     bottom: 97%;
-    left: 18%;
+    left: 16%;
 }
 
 .customizeUser {
@@ -132,16 +144,14 @@ figure {
     padding: 20px 20px 3px 20px;
 }
 
-
 //--------------RANDOMIZE USER
 #figcaption2 {
-    font-size: 25px;
-    position: absolute;
+    @extend %figcaption;
     bottom: 85%;
-    left: 18%;
+    left: 16%;
 }
 
 .randomizeUser {
-    color: white;
+    color: $white;
     padding: 10px 14.43px;
 }

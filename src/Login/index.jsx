@@ -103,7 +103,7 @@ const Login = ({ chat, setChat }) => {
                         id="randomizeUser"
                         onClick={getRandom}
                     />
-                    <label htmlFor="randomizeUser">
+                    <label htmlFor="randomizeUser" className="checkbox-text">
                         Generate username & color
                     </label>
                 </div>

@@ -1,13 +1,13 @@
 $zero-px: 0px;
 
 .login-form__avatar-list {
-    list-style: none;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 230px;
-    padding-top: 12px;
+    width: 240px;
+    padding-top: 10px;
+    row-gap: 11px;
   }
   
   .avatar {
@@ -16,8 +16,7 @@ $zero-px: 0px;
     border: 1px solid transparent;
     border-radius: 6px;
     transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 5px 0;
 
     &:hover {
         cursor: pointer;

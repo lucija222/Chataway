@@ -2,12 +2,12 @@ $flex: flex;
 
 .chat__header {
     background: rgb(0, 209, 224);
-    // background: radial-gradient(
-    //     circle,
-    //     rgba(0, 209, 224, 1) 45%,
-    //     rgba(0, 126, 173, 1) 70%,
-    //     rgba(1, 74, 129, 1) 100%
-    // );
+    background: radial-gradient(
+        circle,
+        rgba(0, 209, 224, 1) 45%,
+        rgba(0, 126, 173, 1) 70%,
+        rgba(1, 74, 129, 1) 100%
+    );
     width: 100%;
     text-align: center;
     color: rgb(216, 216, 216);
