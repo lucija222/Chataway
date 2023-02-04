@@ -1,5 +1,5 @@
 export const classNames = (message, thisMember, whichClass ) => {
-    const { member} = message;
+    const { member } = message;
 
     const thisMemberMessage =
         member.id === thisMember.id ||
@@ -13,10 +13,6 @@ export const classNames = (message, thisMember, whichClass ) => {
     ? "msg-list__member-data msg-list__member-data--thisMember"
     : "msg-list__member-data";
 
-    const classNameInfoContainer = thisMemberMessage
-    ? "msg-list__info-container msg-list__info-container--thisMember"
-    : "msg-list__info-container";
-
     const classNameTextContainer = thisMemberMessage 
     ? "msg-list__text-container msg-list__text-container--thisMember"
     : "msg-list__text-container";
@@ -26,8 +22,6 @@ export const classNames = (message, thisMember, whichClass ) => {
           return classNameMessage;
         case "classNameMemberData":
           return classNameMemberData;
-        case "classNameInfoContainer":
-          return classNameInfoContainer;
         case "classNameTextContainer":
           return classNameTextContainer;
         default:

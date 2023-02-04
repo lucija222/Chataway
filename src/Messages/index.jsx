@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { classNames } from "../util/helperFunctions";
-import './messages.scss';
+import "./messages.scss";
 
-const Messages = ({ messages, thisMember}) => {
+const Messages = ({ messages, thisMember }) => {
     const scrollIntoView = useRef();
     let sameMember = "";
 
@@ -15,7 +15,12 @@ const Messages = ({ messages, thisMember}) => {
         const classNamesArray = [message, thisMember];
 
         const memberData = (
-            <div className={classNames(...classNamesArray, "classNameMemberData")}>
+            <div
+                className={classNames(
+                    ...classNamesArray,
+                    "classNameMemberData"
+                )}
+            >
                 {member.clientData.color ? (
                     <span
                         className="msg-list__avatar--random"
@@ -29,49 +34,56 @@ const Messages = ({ messages, thisMember}) => {
                     />
                 )}
 
-                <div
-                    className={classNames(
-                        ...classNamesArray,
-                        "classNameInfoContainer"
-                    )}
-                >
-                    <span className="msg-list__username">
-                        {member.clientData.username}
-                    </span>
-                </div>
+                <span className="msg-list__username">
+                    {member.clientData.username}
+                </span>
             </div>
         );
 
         const textContainer = (
-            <div className={classNames(...classNamesArray, "classNameTextContainer")}>
+            <div
+                className={classNames(
+                    ...classNamesArray,
+                    "classNameTextContainer"
+                )}
+            >
                 <div className="msg-list__text">{data}</div>
             </div>
         );
 
-        const listItem = (sameMember !== member.id) ? (
-            <li className={classNames(...classNamesArray, "classNameMsg")} data-id={member.id} key={id}>
-                <div>
-                    {memberData}
+        const listItem =
+            sameMember !== member.id ? (
+                <li
+                    className={classNames(...classNamesArray, "classNameMsg")}
+                    data-id={member.id}
+                    key={id}
+                >
+                    <div>
+                        {memberData}
+                        {textContainer}
+                    </div>
+                </li>
+            ) : (
+                <li
+                    className={classNames(...classNamesArray, "classNameMsg")}
+                    data-id={member.id}
+                    key={id}
+                >
                     {textContainer}
-                </div>
-            </li>
-        ) : (
-            <li className={classNames(...classNamesArray, "classNameMsg")} data-id={member.id} key={id}>
-                {textContainer}
-            </li>
-        );
+                </li>
+            );
 
         sameMember = member ? member.id : null;
 
         return listItem;
     };
-     return (
+    return (
         <ul className="msg-list">
             {messages.map((m) => renderMessage(m))}
             {console.log("Messages comp", messages)}
-            <span ref={scrollIntoView} className="scrollIntoView"/> {/*ADD CLASS TO CSS*/}
+            <span ref={scrollIntoView} />
         </ul>
-     );
+    );
 };
 
 export default Messages;

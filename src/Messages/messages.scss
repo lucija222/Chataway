@@ -1,167 +1,95 @@
+//-------------------------------CONTAINER
 .msg-list {
-    padding: 10px 0px 40px 0px;
+    padding: 10px 26px;
     list-style: none;
     overflow-y: scroll;
     scroll-behavior: smooth;
     flex-grow: 1;
-    height: 70vh;
-  }
-  
-  .msg-list__msg {
-    display: flex;
-    margin: 6px 2px 0px 10px;
-  }
-  
-  .msg-list__msg--thisMember {
-    flex-direction: row-reverse;
-  }
-  
-  .history {
-    opacity: 0.5;
-  }
-  
-  .hide {
-    display: none;
-  }
-
-  .msg-list__member-data {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .msg-list__member-data--thisMember {
-    flex-direction: row-reverse;
-  }
-  
-  /*  */
-  .msg-list__avatar {
-    width: 32px;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    margin-top: 20px;
-  }
-  
-  .msg-list__avatar--random {
-    height: 35px;
-    width: 26px;
-    display: inline-block;
-    align-self: flex-end;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  }
-  
-  .msg-list__info-container {
+    height: 80vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding-top: 10px;
-    margin-left: 5px;
-  }
-  
-  .msg-list__info-container--thisMember {
-    align-items: flex-end;
-    margin-left: 0px;
-    margin-right: 5px;
-  }
-  
-  .msg-list__username {
+    background-color: #11171b;
+}
+
+
+.msg-list__msg {
+    display: flex;
+}
+
+//------------------------------MEMBER DATA
+.msg-list__member-data {
+    display: flex;
+    gap: 5px;
+    margin: 30px 0 3px;
+}
+
+.msg-list__msg--thisMember {
+    flex-direction: row-reverse;
+}
+
+.msg-list__member-data--thisMember {
+    flex-direction: row-reverse;
+}
+
+//--USERNAME
+.msg-list__username {
     display: block;
-    color:  gray;
+    color: white;
     font-size: 14px;
-    padding-bottom: 4px;
-  }
-  
-  .msg-list__time-info {
-    width: 20px;
-    cursor: pointer;
-    filter: grayscale(100%);
-    z-index: 0;
-  }
-  
-  .msg-list__time-info--open {
-    filter: none;
-  }
-  
-  /*  */
-  .msg-list__text-container {
+    align-self: center;
+}
+
+//--AVATARS
+.msg-list__avatar {
+    width: 25.9px;
+    padding: 2px;
+    background-color: rgb(243, 251, 255);
+    border: 0.1px solid #11171b;
+    border-radius: 50%;
+}
+
+.msg-list__avatar--random {
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    align-self: flex-end;
+    border-radius: 50%;
+}
+
+//--------------------------------MESSAGES
+.msg-list__text-container {
     display: flex;
     flex-direction: row-reverse;
-    margin-right: 50px;
-    margin-left: 0px;
-    cursor: pointer;
+    padding: 5px 5px 5px 0;
+    margin: 0 15% 0 0;
     justify-content: flex-end;
-  }
-  
-  .msg-list__text-container--thisMember {
+}
+
+.msg-list__text-container--thisMember {
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 0px;
-    margin-left: 50px;
-  }
-  
-  .msg-list__text {
-    padding: 4px;
+    margin: 0 0 0 15%;
+    padding: 5px 0 5px 5px;
+}
+
+.msg-list__text {
+    padding: 7px 13px;
     border-radius: 6px;
-    background-color: rgb(71, 71, 71);
-    color: rgb(236, 236, 236);
+    background: rgb(3, 62, 107);
+    color: rgb(223, 230, 230);
     word-break: break-word;
     line-height: 20px;
     user-select: text;
-  }
-  
-  .msg-list__text--light {
-    background-color: rgb(148, 148, 148);
-    color: rgb(255, 255, 255);
-  }
-  
-  
-  .msg-list__text::selection {
-    background-color: lightgray;
-  }
-  
-  .msg-list__text-container--thisMember .msg-list__text {
-    background-color:  rgb(56, 63, 151);
-  }
-  
-  .msg-list__text-container--thisMember .msg-list__text--light {
-    background-color: rgb(92, 98, 177);
-  }
-  
-  .control-message {
-    color: #777;
-    text-align: center;
-    font-size: 14px;
-  }
-  .msg-list {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(150, 150, 150) rgb(34, 34, 34);
-  }
-  
-  .msg-list--light {
-    scrollbar-color: rgb(150, 150, 150) rgb(34, 34, 34);
-  }
-  
-//   /* Works on Chrome/Edge/Safari */
-//   .msg-list::-webkit-scrollbar {
-//     width: 10px;
-//     height: 0px;
-//   }
-//   .msg-list::-webkit-scrollbar-track {
-//     background: rgb(34, 34, 34);
-//   }
-//   .msg-list::-webkit-scrollbar-thumb {
-//     background-color: rgb(150, 150, 150);
-//     border-radius: 20px;
-//     border: 3px solid rgb(34, 34, 34);
-//   }
-  
-//   .msg-list--light::-webkit-scrollbar-track {
-//     background: var(--msgListScrollbarBgLight);
-//   }
-//   .msg-list--light::-webkit-scrollbar-thumb {
-//     background-color: var(--msgListScrollbar);
-//     border: 3px solid var(--msgListScrollbarBgLight);
-//   }
-  
+}
+
+.msg-list__text::selection {
+    background-color: rgba(126, 126, 126, 0.7);
+}
+
+.msg-list__text-container--thisMember .msg-list__text {
+    color: rgb(223, 230, 230);
+    background: #017f9e;
+}
+
+
+
