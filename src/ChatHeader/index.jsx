@@ -28,7 +28,7 @@ const ChatHeader = ({  members }) => {
                                     alt="User's avatar"
                                 />
                             )}
-                            <span>{member.clientData.username}</span>
+                            <span className="onlineMembers__username">{member.clientData.username}</span>
                         </li>
                     ))}
                 </ul>

@@ -1,6 +1,6 @@
 //-------------------------------CONTAINER
 .msg-list {
-    padding: 10px 26px;
+    padding: 0 26px 10px;
     list-style: none;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -10,7 +10,6 @@
     flex-direction: column;
     background-color: #11171b;
 }
-
 
 .msg-list__msg {
     display: flex;
@@ -61,25 +60,23 @@
     display: flex;
     flex-direction: row-reverse;
     padding: 5px 5px 5px 0;
-    margin: 0 15% 0 0;
     justify-content: flex-end;
 }
 
 .msg-list__text-container--thisMember {
     flex-direction: row;
     justify-content: flex-end;
-    margin: 0 0 0 15%;
     padding: 5px 0 5px 5px;
 }
 
 .msg-list__text {
-    padding: 7px 13px;
+    padding: 9px 13px;
     border-radius: 6px;
     background: rgb(3, 62, 107);
     color: rgb(223, 230, 230);
-    word-break: break-word;
     line-height: 20px;
     user-select: text;
+    max-width: 82%;
 }
 
 .msg-list__text::selection {

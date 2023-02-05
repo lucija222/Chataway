@@ -15,10 +15,22 @@ $flex: flex;
     padding: 0 6px;
 }
 
+%input {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
+%input-label {
+    padding-bottom: 5px;
+    font-size: $font18;
+}
+
 //----------GENERAL
 .form-container {
     display: $flex;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
     background: rgb(0, 209, 224);
@@ -31,13 +43,7 @@ $flex: flex;
 }
 
 .login-form {
-    transform: translateY(15%);
-    padding: 30px 20px;
-    height: 67vh;
-    width: 25vw;
-    min-width: 308px;
-    max-width: 400px;
-    min-height: 580px;
+    padding: 55px 60px;
     display: $flex;
     flex-direction: column;
     justify-content: center;
@@ -58,7 +64,7 @@ $flex: flex;
 #login-form__submit-button {
     transform: translateY(25%);
     padding: 5px 10px;
-    font-size: 16px;
+    font-size: $font18;
     border: 3px solid $dark-base-color;
     border-radius: 3px;
     background-color: $dark-base-color;
@@ -74,22 +80,18 @@ $flex: flex;
 
 //--------------------------CUSTOMIZE USER
 .login-form__input-label {
-    padding-bottom: 5px;
-    font-size: $font18;
+    @extend %input-label;
     color: $light-base-color;
 }
 
 .login-form__input-label-disabled {
-    padding-bottom: 5px;
-    font-size: $font18;
+    @extend %input-label;
     color: rgb(78, 78, 78);
 }
 
 .login-form__input {
-    padding: 5px;
-    font-size: 16px;
+    @extend %input;
     border: 3px solid $light-base-color;
-    border-radius: 3px;
     background-color: #d8e8ee;
 
     &:hover {
@@ -98,10 +100,8 @@ $flex: flex;
 }
 
 .login-form__input-disabled {
-    padding: 5px;
-    font-size: 16px;
+    @extend %input;
     border: 3px solid #acacac;
-    border-radius: 3px;
     background-color: #d3cfcf;
 }
 
@@ -139,7 +139,7 @@ figure {
 }
 
 .customizeUser {
-    display: flex;
+    display: $flex;
     flex-direction: column;
     padding: 20px 20px 3px 20px;
 }
@@ -153,5 +153,5 @@ figure {
 
 .randomizeUser {
     color: $white;
-    padding: 10px 14.43px;
+    padding: 10px 17.5px;
 }

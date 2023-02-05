@@ -1,4 +1,4 @@
-export const classNames = (message, thisMember, whichClass ) => {
+export const classNames = (message, thisMember, whichClass) => {
     const { member } = message;
 
     const thisMemberMessage =

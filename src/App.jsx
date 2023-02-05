@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./app.scss";
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import { CHANNEL_ID } from "./util/channel";
@@ -41,10 +41,8 @@ const App = () => {
         };
 
         const roomEvents = () => {
-            console.log("roomevents ran");
             const room = drone.subscribe("observable-room");
             room.on("open", (error) => {
-                console.log("open");
                 if (error) {
                     console.error(error);
                 } else {
@@ -52,12 +50,10 @@ const App = () => {
                 }
             });
             room.on("members", (m) => {
-                console.log("members");
                 //Emits an array of members that have joined the room. This event is only triggered once, right after the user has successfully connected to the observable room -> list of members as ARRAY
                 setMembers({ online: m });
             });
             room.on("member_join", (newMember) => {
-                console.log("member_join");
                 //Member join event is emitted when a new member joins the room - returns member OBJECT
                 setMembers((prevMembers) => ({
                     ...prevMembers,
@@ -65,7 +61,6 @@ const App = () => {
                 }));
             });
             room.on("member_leave", ({ id }) => {
-                console.log("member_leave");
                 //Member leave event is emitted when a member leaves the room.
                 setMembers((prevMembers) => { 
                     const index = prevMembers.online.findIndex(
@@ -83,7 +78,6 @@ const App = () => {
             });
 
             room.on("message", (message) => {
-                console.log("MESSAGE RAN", message);
                 setChat((prevChat) => ({
                     ...prevChat,
                     messages: [...prevChat.messages, message],
@@ -111,8 +105,6 @@ const App = () => {
             ) : (
                 //Else load everything chat related
                 <div className="chat">
-                    {" "}
-                    {console.log("CHAT", chat.messages)}
                     <ChatHeader members={members.online} />
                     <Messages
                         messages={chat.messages}
