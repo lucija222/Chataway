@@ -47,9 +47,7 @@ const Login = ({ setChat }) => {
                 },
             }));
         } else if (avatar === "") {
-            setTimeout(() => {
                 setAvatarAnimation(true);
-            }, 800);
         } else {
             setChat((prevChat) => ({
                 ...prevChat,

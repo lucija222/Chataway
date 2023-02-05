@@ -8,7 +8,7 @@ const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
     }
 
     const renderAvatars = (avatar, index) => {
-        const image_alt = `Avatar${index}`;
+        const image_alt = `avatar${index}`;
         return (
             <li
                 className={
