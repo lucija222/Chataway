@@ -23,14 +23,14 @@ const App = () => {
     useEffect(() => {
         if (chat.member.username !== "") {
             const drone = new window.Scaledrone(CHANNEL_ID, {
-                data: chat.member,
+                data: chat.member
             });
             setDrone(drone);
         }
     }, [chat.member]);
 
     useEffect(() => {
-        const droneEvents = () => {
+        const droneEvent = () => {
             drone.on("open", (error) => {
                 if (error) {
                     return console.error(error);
@@ -50,18 +50,17 @@ const App = () => {
                 }
             });
             room.on("members", (m) => {
-                //Emits an array of members that have joined the room. This event is only triggered once, right after the user has successfully connected to the observable room -> list of members as ARRAY
                 setMembers({ online: m });
             });
+
             room.on("member_join", (newMember) => {
-                //Member join event is emitted when a new member joins the room - returns member OBJECT
                 setMembers((prevMembers) => ({
                     ...prevMembers,
                     online: [...prevMembers.online, newMember],
                 }));
             });
+
             room.on("member_leave", ({ id }) => {
-                //Member leave event is emitted when a member leaves the room.
                 setMembers((prevMembers) => { 
                     const index = prevMembers.online.findIndex(
                       (member) => member.id === id
@@ -74,7 +73,6 @@ const App = () => {
                       ]
                     }; 
                   });
-     
             });
 
             room.on("message", (message) => {
@@ -85,9 +83,9 @@ const App = () => {
             });
         };
 
+
         if (drone && !chat.member.id) {
-            //If drone exists but member.id doesn't, call droneEvents again
-            droneEvents();
+            droneEvent();
         }
     }, [chat, drone, members]);
 
@@ -98,12 +96,11 @@ const App = () => {
 
     return (
         <>
-            {!chat.member.username ? ( //If no username, load login
+            {!chat.member.username ? (
                 <div>
-                    <Login chat={chat} setChat={(obj) => setChat(obj)} />
+                    <Login setChat={setChat} /> 
                 </div>
             ) : (
-                //Else load everything chat related
                 <div className="chat">
                     <ChatHeader members={members.online} />
                     <Messages

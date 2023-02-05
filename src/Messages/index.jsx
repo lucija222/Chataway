@@ -80,7 +80,6 @@ const Messages = ({ messages, thisMember }) => {
     return (
         <ul className="msg-list">
             {messages.map((m) => renderMessage(m))}
-            {console.log("Messages comp", messages)}
             <span ref={scrollIntoView} />
         </ul>
     );

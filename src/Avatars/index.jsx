@@ -8,13 +8,13 @@ const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
     }
 
     const renderAvatars = (avatar, index) => {
-        const img_alt = `Avatar${index}`;
+        const image_alt = `Avatar${index}`;
         return (
             <li
                 className={
                     random
                         ? "avatar avatar__disabled"
-                        : selectedAvatar === img_alt
+                        : selectedAvatar === image_alt
                         ? "avatar avatar__selected"
                         : avatarAnimation
                         ? "avatar avatar__animation"
@@ -22,7 +22,7 @@ const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
                 }
                 key={index}
             >
-                <img src={avatar} alt={img_alt} onClick={getAvatar} />
+                <img src={avatar} alt={image_alt} onClick={getAvatar} />
             </li>
         );
     };
