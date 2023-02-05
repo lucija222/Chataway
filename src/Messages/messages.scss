@@ -5,7 +5,6 @@
     overflow-y: scroll;
     scroll-behavior: smooth;
     flex-grow: 1;
-    height: 80vh;
     display: flex;
     flex-direction: column;
     background-color: #11171b;
@@ -34,7 +33,7 @@
 .msg-list__username {
     display: block;
     color: white;
-    font-size: 14px;
+    font-size: 17px;
     align-self: center;
 }
 

@@ -1,5 +1,5 @@
 //---------------------VARIABLES
-$font18: 18px;
+$font20: 20px;
 $light-base-color: #21d3f7;
 $dark-base-color: #025683;
 $off-white-color: #e3f7ff;
@@ -8,7 +8,7 @@ $flex: flex;
 
 //--------------------PLACEHOLDER SELECTORS
 %figcaption {
-    font-size: 25px;
+    font-size: 28px;
     color: $white;
     position: absolute;
     background-color: #11171b;
@@ -23,7 +23,7 @@ $flex: flex;
 
 %input-label {
     padding-bottom: 5px;
-    font-size: $font18;
+    font-size: $font20;
 }
 
 //----------GENERAL
@@ -55,7 +55,7 @@ $flex: flex;
 }
 
 .orDiv {
-    font-size: 20px;
+    font-size: 22px;
     color: $white;
     padding: 10px 0 20px;
     font-weight: 500;
@@ -64,7 +64,7 @@ $flex: flex;
 #login-form__submit-button {
     transform: translateY(25%);
     padding: 5px 10px;
-    font-size: $font18;
+    font-size: $font20;
     border: 3px solid $dark-base-color;
     border-radius: 3px;
     background-color: $dark-base-color;
@@ -107,7 +107,7 @@ $flex: flex;
 
 .login-form__span {
     margin-top: 10px;
-    font-size: $font18;
+    font-size: $font20;
     color: $off-white-color;
 }
 
@@ -117,7 +117,7 @@ $flex: flex;
 
 .login-form__random-checkbox {
     margin-top: 10px;
-    font-size: $font18;
+    font-size: $font20;
     color: $light-base-color;
 }
 
@@ -148,7 +148,7 @@ figure {
 #figcaption2 {
     @extend %figcaption;
     bottom: 85%;
-    left: 16%;
+    left: 15%;
 }
 
 .randomizeUser {

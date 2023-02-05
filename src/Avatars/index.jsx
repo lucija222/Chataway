@@ -3,7 +3,7 @@ import './avatars.scss';
 const Avatars = ({ random, getAvatar, avatarAnimation, selectedAvatar }) => {
     const avatars = [];
     for (let i = 1; i <= 6; i++) {
-        const path = `../avatars/avatar${i}.png`;
+        const path = `/avatars/avatar${i}.png`;
         avatars.push(path);
     }
 

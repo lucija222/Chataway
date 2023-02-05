@@ -1,5 +1,5 @@
 html, body, div, span,
-h1, h2, h3, h4, h5, h6, p, ol, ul, li,form, label,
+h1, h2, h3, h4, h5, h6, p, ol, ul, li, form, label,
 figure, figcaption {
 	margin: 0;
 	padding: 0;
@@ -12,7 +12,9 @@ figcaption, figure{
 }
 body {
   line-height: 1;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 19px;
+  font-weight: 400;
 }
 
 ol,
@@ -32,9 +34,9 @@ button:hover {
 }
 
 .chat {
+    min-width: 350px;
     width: 100vw;
     height: 100vh;
-    margin: 0px auto;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;

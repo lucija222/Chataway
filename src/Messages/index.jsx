@@ -73,7 +73,7 @@ const Messages = ({ messages, thisMember }) => {
                 </li>
             );
 
-        sameMember = member ? member.id : null;
+        sameMember = member ? member.id : "";
 
         return listItem;
     };
