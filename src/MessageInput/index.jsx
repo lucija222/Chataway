@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Emojis from "../Emojis";
 import "./messageInput.scss";
 
 const MessageInput = ({sendMessage}) => {
@@ -35,6 +36,7 @@ const MessageInput = ({sendMessage}) => {
 
     return (
         <div className="chat__input">
+            <Emojis />
             <form className="msg-form" onSubmit={publishInput}>
                 <input
                     className="msg-form__input"
