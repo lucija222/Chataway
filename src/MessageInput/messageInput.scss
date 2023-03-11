@@ -1,0 +1,26 @@
+.msg-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.msg-form__input {
+    padding: 15px;
+    font-size: 18px;
+    flex-grow: 1;
+    color: rgb(43, 43, 43);
+    background-color: rgb(245, 245, 245);
+    user-select: text;
+}
+
+.msg-form__input::selection {
+    background-color: lightgray;
+}
+
+.msg-form__btn {
+    background-color: #012a49;
+    color: aliceblue;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 22px 0 22px;
+}
