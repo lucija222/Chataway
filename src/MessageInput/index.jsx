@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import Emojis from "../Emojis";
 import "./messageInput.scss";
 
-const MessageInput = ({sendMessage}) => {
+const MessageInput = ({ sendMessage }) => {
     const placeholder = [
         "Enter your message...",
         "Please type something first!",
     ];
     const initInput = { text: "", placeholder: placeholder[0] };
     const [input, setInput] = useState(initInput);
+    const [isEmojiPickerShowing, setIsEmojiPickerShowing] = useState(false);
 
     let inputRef;
     useEffect(() => inputRef.focus(), [inputRef]);
@@ -19,10 +20,11 @@ const MessageInput = ({sendMessage}) => {
 
     const publishInput = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         if (input.text === "") {
             setInput({
                 ...input,
-                placeholder: placeholder[1]
+                placeholder: placeholder[1],
             });
         } else {
             const message = input.text;
@@ -34,9 +36,34 @@ const MessageInput = ({sendMessage}) => {
         }
     };
 
+    const toggleEmojiPicker = (e) => {
+        e.stopPropagation();
+        setIsEmojiPickerShowing(!isEmojiPickerShowing);
+    };
+
     return (
         <div className="chat__input">
-            <Emojis />
+            <div
+                className={
+                    isEmojiPickerShowing
+                        ? "show-emojiPicker"
+                        : "hide-emojiPicker"
+                }
+            >
+                <Emojis /> 
+            </div>
+            <span className="span__relative-position">
+                <button
+                    type="button"
+                    className="emoji-picker__button"
+                    onClick={toggleEmojiPicker}
+                >
+                    <img
+                        src="./emoji-bar-icons/smileys.png"
+                        alt="Emoji picker"
+                    />
+                </button>
+            </span>
             <form className="msg-form" onSubmit={publishInput}>
                 <input
                     className="msg-form__input"
@@ -48,10 +75,7 @@ const MessageInput = ({sendMessage}) => {
                     }}
                     onChange={handleInputChange}
                 />
-                <button
-                    className="msg-form__btn"
-                    type="submit"
-                >
+                <button className="msg-form__btn" type="submit">
                     Send
                 </button>
             </form>

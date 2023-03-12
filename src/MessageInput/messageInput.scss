@@ -1,10 +1,27 @@
+// .chat__input {
+//     display: flex;
+//     flex-direction: row;
+// }
+
+.emoji-picker__button {
+    position: absolute;
+    top: 13px;
+    left: 3px;
+    opacity: 0.5;
+    border: none;
+}
+
+.emoji-picker__button img {
+    width: 25px;
+}
+
 .msg-form {
     display: flex;
     justify-content: space-between;
 }
 
 .msg-form__input {
-    padding: 15px;
+    padding: 15px 15px 15px 40px;
     font-size: 18px;
     flex-grow: 1;
     color: rgb(43, 43, 43);
@@ -23,4 +40,16 @@
     font-size: 20px;
     font-weight: 600;
     padding: 0 22px 0 22px;
+}
+
+.span__relative-position {
+    position: relative;
+}
+
+.show-emojiPicker {
+    display: block;
+}
+
+.hide-emojiPicker {
+    display: none;
 }
