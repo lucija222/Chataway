@@ -1,0 +1,24 @@
+.emoji-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.emoji-categories-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.emoji-category {
+
+}
+
+.emoji-category img {
+    height: 20px;
+    padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: gainsboro;
+    }
+}
