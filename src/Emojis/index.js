@@ -4,60 +4,68 @@ import './emojis.scss';
 
 const Emoji = () => {
     const [selectedCategory, setSelectedCategory] = useState("smileys_emotion");
-    const [emojisByCategory, setEmojisByCategory] = useState([
-        {
-            categoryslug: "smileys_emotion",
-            emojis: [],
-        },
-        {
-            categoryslug: "people_body",
-            emojis: [],
-        },
-        {
-            categoryslug: "animals_nature",
-            emojis: [],
-        },
-        {
-            categoryslug: "food_drink",
-            emojis: [],
-        },
-        {
-            categoryslug: "travel_places",
-            emojis: [],
-        },
-        {
-            categoryslug: "activities",
-            emojis: [],
-        },
-        {
-            categoryslug: "objects",
-            emojis: [],
-        },
-        {
-            categoryslug: "symbols",
-            emojis: [],
-        },
-        {
-            categoryslug: "flags",
-            emojis: [],
-        },
-    ]);
+    const [emojiData, setEmojiData] = useState([]);
 
-    const map = (data) => {
-        for (let category of data) {
-            console.log(category.slug);
-        }
+    // const map = (data) => {
+    //     for (let category of data) {
+    //         console.log(category.slug);
+    //     }
+    // };
+
+    const filterAndSetEmojiData = (data) => {
+        const allFilteredCategories = [];
+
+        for (const category of data) {
+            const dataByCategory = {slug: category.slug, emojis: []};
+
+            for (const emojiObject of category.emojis) {
+                const filteredEmojiObject = {name: emojiObject.name, emoji: emojiObject.emoji}
+                dataByCategory.emojis.push(filteredEmojiObject);
+            };
+
+            allFilteredCategories.push(dataByCategory);
+        };
+
+        setEmojiData([...allFilteredCategories]);
     };
 
+    // const x = () => {
+    //     console.log("it works", emojiData);
+    // };
+    // x(emojiData.map((emoji) => {
+                    
+                // }));
+
     useEffect(() => {
-        fetchData("./json/emojis.json", map);
+        fetchData("./json/emojis.json", filterAndSetEmojiData);
     }, []);
 
+    const displaySelectedEmojiCategory = () => {
+        const selectedCategoryData = [];
+        for (const category of emojiData) {
+            if (category.slug === selectedCategory) {
+                selectedCategoryData.push(...category.emojis);
+                break;
+                // const emojiList = category.emojis.map((emojiObject) => {
+                //     <li className="emoji" key={emojiObject.name}>
+                //         {emojiObject.emoji}
+                //     </li>
+                }
+            };
+
+        return (selectedCategoryData.map((emojiObject) => {
+            return (
+                <li className="emoji" key={emojiObject.name}>
+                    {emojiObject.emoji}
+                </li>
+            );
+        }));
+    };
+ 
     const handleEmojiCategories = (e) => {
-        e.preventDefault();
-        const dataset = e.target.dataset;
-        console.log(dataset.categorySlug);
-        setSelectedCategory(dataset);
+        e.stopPropagation();
+        const categorySlugDataset = e.target.dataset.categorySlug;
+        setSelectedCategory(categorySlugDataset);
     };
 
     return (
@@ -86,7 +94,7 @@ const Emoji = () => {
                 </li>
                 <li className="emoji-category">
                     <img
-                        sr="./emoji-bar-icons/drink.png"
+                        sr="./emoji-bar-icons/flags.png"
                         alt="Food & Drink"
                         data-category-slug="food_drink"
                     />
@@ -119,15 +127,10 @@ const Emoji = () => {
                         data-category-slug="symbols"
                     />
                 </li>
-                <li className="emoji-category">
-                    <img
-                        src="./emoji-bar-icons/flags.png"
-                        alt="Flags"
-                        data-category-slug="flags"
-                    />
-                </li>
             </ul>
-            <ul className="emoji-list">{}</ul>
+            <ul className="emoji-list" id="emoji-list">
+                {displaySelectedEmojiCategory()}
+            </ul>
         </div>
     );
 };

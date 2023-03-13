@@ -7,7 +7,7 @@ export const fetchData = async (url, setStateFunc) => {
         }
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setStateFunc(data);
     } catch(exception) {
         console.error(`Fetch exception: ${exception}`)
