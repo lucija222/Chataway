@@ -4355,14 +4355,6 @@
                 "emoji_version": "0.6"
             },
             {
-                "emoji": "🐻‍❄️",
-                "skin_tone_support": false,
-                "name": "polar bear",
-                "slug": "polar_bear",
-                "unicode_version": "13.0",
-                "emoji_version": "13.0"
-            },
-            {
                 "emoji": "🐨",
                 "skin_tone_support": false,
                 "name": "koala",
@@ -6751,14 +6743,6 @@
                 "emoji_version": "11.0"
             },
             {
-                "emoji": "🛼",
-                "skin_tone_support": false,
-                "name": "roller skate",
-                "slug": "roller_skate",
-                "unicode_version": "13.0",
-                "emoji_version": "13.0"
-            },
-            {
                 "emoji": "🚏",
                 "skin_tone_support": false,
                 "name": "bus stop",
@@ -8133,14 +8117,6 @@
                 "emoji_version": "0.6"
             },
             {
-                "emoji": "🪄",
-                "skin_tone_support": false,
-                "name": "magic wand",
-                "slug": "magic_wand",
-                "unicode_version": "13.0",
-                "emoji_version": "13.0"
-            },
-            {
                 "emoji": "🎮",
                 "skin_tone_support": false,
                 "name": "video game",
@@ -8291,14 +8267,6 @@
                 "slug": "yarn",
                 "unicode_version": "11.0",
                 "emoji_version": "11.0"
-            },
-            {
-                "emoji": "🪢",
-                "skin_tone_support": false,
-                "name": "knot",
-                "slug": "knot",
-                "unicode_version": "13.0",
-                "emoji_version": "13.0"
             }
         ]
     },
