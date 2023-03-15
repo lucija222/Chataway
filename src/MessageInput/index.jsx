@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Emojis from "../Emojis";
 import "./messageInput.scss";
 
@@ -10,9 +10,9 @@ const MessageInput = ({ sendMessage }) => {
     const initInput = { text: "", placeholder: placeholder[0] };
     const [input, setInput] = useState(initInput);
     const [isEmojiPickerShowing, setIsEmojiPickerShowing] = useState(false);
+    const inputRef = useRef(null);
 
-    let inputRef;
-    useEffect(() => inputRef.focus(), [inputRef]);
+    useEffect(() => inputRef.current.focus(), [input]);
 
     const handleInputChange = (e) => {
         setInput({ ...input, text: e.target.value });
@@ -41,6 +41,16 @@ const MessageInput = ({ sendMessage }) => {
         setIsEmojiPickerShowing(!isEmojiPickerShowing);
     };
 
+    const handleEmojiClick = (e) => {
+        e.stopPropagation();
+        if (e.target.classList.contains("emoji")) {
+            setInput((prevInput) => ({
+                ...prevInput,
+                text: prevInput.text + e.target.innerText,
+            }));
+        }
+    };
+
     return (
         <div className="chat__input">
             <div
@@ -50,7 +60,7 @@ const MessageInput = ({ sendMessage }) => {
                         : "hide-emojiPicker"
                 }
             >
-                <Emojis /> 
+                <Emojis handleEmojiClick={handleEmojiClick} isEmojiPickerShowing={isEmojiPickerShowing} />
             </div>
             <span className="span__relative-position">
                 <button
@@ -58,10 +68,14 @@ const MessageInput = ({ sendMessage }) => {
                     className="emoji-picker__button"
                     onClick={toggleEmojiPicker}
                 >
-                    <img
-                        src="./emoji-bar-icons/smileys.png"
-                        alt="Emoji picker"
-                    />
+                    {isEmojiPickerShowing ? (
+                        <img src="./emoji-bar-icons/x.svg" alt="Emoji picker" />
+                    ) : (
+                        <img
+                            src="./emoji-bar-icons/smileys.svg"
+                            alt="Emoji picker"
+                        />
+                    )}
                 </button>
             </span>
             <form className="msg-form" onSubmit={publishInput}>
@@ -70,9 +84,7 @@ const MessageInput = ({ sendMessage }) => {
                     type="text"
                     value={input.text}
                     placeholder={input.placeholder}
-                    ref={(input) => {
-                        inputRef = input;
-                    }}
+                    ref={inputRef}
                     onChange={handleInputChange}
                 />
                 <button className="msg-form__btn" type="submit">
